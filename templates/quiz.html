@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block script %}
+<!-- <script src="{% static 'js/jquery.min.js' %}"></script>
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" id="bootstrap-css">
+<link href="{% static 'css/quiz.css' %}" rel="stylesheet" id="bootstrap-css">
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/test_static.js' %}"></script> -->
+{% endblock script %}
+
+{% block title %}
+Quiz App
+{% endblock title %}
+
+{% block content %}
+
+<h2>This Is Quiz App</h2>
+<form action="{% url 'quiz-result' %}" method="GET">
+    {% csrf_token %}
+    {% for question in questions %}
+        <h2>{{question.question_text}}</h2>
+        {% for answer in question.get_answers %}
+        <ul>
+            <li>
+                <input type="radio" id="{{answer}}" name="{{question.question_text}}" value="{{answer}}">
+                <label for="{{answer}}">{{answer}}</label>
+            </li>
+        </ul>
+        {% endfor %}
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock content %}
+

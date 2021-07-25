@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Quiz Result
+{% endblock title %}
+
+{% block content %}
+    <h2>This Is Quiz Result</h2>
+    {% for content in contents %}
+        {% if content.answered == content.true_answer %}
+            <div class="border border-success rounded">
+                <p> Question : {{content.question}} | Your answer is : {{content.answered}} | True</p>
+            </div>
+        {% else %}
+            <div class="border border-danger rounded">
+                <p> Question : {{content.question}} | Your answer is : {{content.answered}} | False : True Answer Is : {{content.true_answer}}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <a href="{% url 'quiz_list' %}">Back</a>
+{% endblock content %}

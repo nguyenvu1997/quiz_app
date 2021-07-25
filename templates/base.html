@@ -1,13 +1,92 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'logo.png' %}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+
     <title>{% block title %} {% endblock title %}</title>
+
 </head>
+
 <body>
-    {% block content %}
-    {% endblock content %}
+    <header>
+        <div class='nav_box_web'>
+            <ul class="nav_box_web_list">
+                <li id="bar-icon"><i class="fas fa-bars"></i></li>
+                <li class="need_hide"><a href="{% url 'quiz' %}">Home</a> </li>
+                <li class="need_hide"><a href="">Services</a> </li>
+                <li class="need_hide" id="dropdownProjects" data-bs-toggle="dropdown" aria-expanded="false"><a
+                        href="">Projects</a> <i class="fas fa-caret-down text-white"></i></li>
+                <ul class="dropdown-menu" aria-labelledby="dropdownProjects">
+                    <li><a class="dropdown-item" href="{% url 'quiz_list' %}">Quiz</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+                <li class="need_hide"><a href="">About</a></li>
+            </ul>
+        </div>
+
+        <div class="nav_user">
+            {% if user.is_authenticated %}
+            <span class="need_hide">{{user.username}}</span>
+            <img src="{%static 'img/avatar.jpg'%}" alt="..." class="rounded-circle" width="28px" height="28px"
+                id="dropdownAvatar" data-bs-toggle="dropdown" aria-expanded="false">
+                <ul class="dropdown-menu" aria-labelledby="dropdownAvatar">
+                    <li><a class="dropdown-item" href="{% url 'password_change'%}">Change Password</a></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+
+            {% else %}
+            <a href="{% url 'login' %}">Log In</a>
+            <a href="{% url 'signup' %}">Sign Up</a>
+            {% endif%}
+        </div>
+
+        <div class="nav_box_mobile">
+            <ul class="nav_box_mobile_list">
+                <div id="close-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+                <!-- <li id="close-btn"><i class="fas fa-times"></i></li> -->
+                <li id="first_item"><a href="">Home</a> </li>
+                {% if user.is_authenticated %}
+
+                {% else %}
+                    <li><a href="">Log In</a> </li>
+                    <li><a href="">Sign Up</a> </li>
+                {% endif%}
+
+                <li class="" id="dropdownProjects" data-bs-toggle="dropdown" aria-expanded="false"><a
+                        href="">Projects</a> <i class="fas fa-caret-down"></i></li>
+                <ul class="dropdown-menu" aria-labelledby="dropdownProjects">
+                    <li><a class="dropdown-item" href="{% url 'quiz_list' %}">Quiz</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+                <li class=""><a href="">About</a></li>
+            </ul>
+        </div>
+
+    </header>
+
+    <div class="container">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+
 </body>
+
 </html>

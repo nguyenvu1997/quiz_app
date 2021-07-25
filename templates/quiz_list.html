@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Quiz List
+{% endblock title %}
+
+{% block script %}
+<script>
+    function selectCategory() {
+        let selected = document.getElementById("select-categories")
+        console.log(selected.value)
+    }
+</script>
+{% endblock script %}
+
+{% block content %}
+<h2>This Is Quiz List</h2>
+
+<form method="GET" style="display: flex;">
+
+    <input type='text' name='search-area' placeholder="Search your task" value="{{search_input}}">
+    <button type="submit" class="btn btn-primary">
+        <i class="fas fa-search"></i>
+    </button>
+
+    <label for="select-categories">Choose a category:</label>
+    <select name="select-categories" id="select-categories" onchange="selectCategory()">
+        <option value="Math">Math</option>
+        <option value="Food">Food</option>
+    </select>
+
+</form>
+
+{% for quiz in quizs %}
+
+    <h2><a href="{% url 'quiz_detail' quiz.id %}"> {{quiz.title}}-{{quiz.category}}</a></h2>
+
+{% endfor %}
+
+{% endblock content %}
