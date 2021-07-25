@@ -110,6 +110,14 @@ header {
     color: white;
 }
 
+.nav_user .dropdown-menu{
+    background-color: black;
+}
+
+.dropdown-menu .dropdown-item{
+    color: white;
+}
+
 .text-white{
     color: white;
 }
@@ -133,4 +141,10 @@ body .row {
     right: 0;
     margin-left: auto;
     font-size: 20px;
+}
+
+.nav_user a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
 }
