@@ -1,33 +1,58 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Quiz Detail
+Quiz Detail
 {% endblock title %}
 
 {% block content %}
-    <h2>This Is Quiz Detail</h2>
-    <h2>{{quiz}}</h2>
-    <form action="{% url 'quiz-result' %}" method="GET">
-        {% csrf_token %}
-        
-        {% for question in quiz.get_questions %}
-        <div class="row border border-primary rounded">
-            <h2>{{question}}</h2>
+<h2>This Is Quiz Detail</h2>
+<h2>{{quiz}}</h2>
+<form action="{% url 'quiz_result' %}" method="GET">
+    {% csrf_token %}
 
-            {% for answer in question.get_answers %}
+    {% for question in quiz.get_questions %}
+    <div class="row border border-primary rounded" id={{question}}>
+        <h2>{{question}}</h2>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="{{question.question_text}}" id="{{answer}}" value="{{answer}}">
-                    <label class="form-check-label" for="{{answer}}">
-                        {{answer}}
-                    </label>
-                </div>
+        {% for answer in question.get_answers %}
 
-            {% endfor %}
+        <div class="form-check">
+
+            {% if forloop.counter == 1 %}
+            <input class="form-check-input" type="radio" name="{{question.question_text}}" id="{{answer}}"
+                value="{{answer}}" checked>
+            <label class="form-check-label" for="{{answer}}">
+                A. {{answer}}
+            </label>
+
+            {% elif forloop.counter == 2 %}
+            <input class="form-check-input" type="radio" name="{{question.question_text}}" id="{{answer}}"
+                value="{{answer}}">
+            <label class="form-check-label" for="{{answer}}">
+                B. {{answer}}
+            </label>
+
+            {% elif forloop.counter == 3 %}
+            <input class="form-check-input" type="radio" name="{{question.question_text}}" id="{{answer}}"
+                value="{{answer}}">
+            <label class="form-check-label" for="{{answer}}">
+                C. {{answer}}
+            </label>
+
+            {% else %}
+            <input class="form-check-input" type="radio" name="{{question.question_text}}" id="{{answer}}"
+                value="{{answer}}">
+            <label class="form-check-label" for="{{answer}}">
+                D. {{answer}}
+            </label>
+            {% endif %}
         </div>
-        {% endfor %}
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 {% endblock content %}

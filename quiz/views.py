@@ -1,14 +1,10 @@
-from django.http import request
+from django.http import request, JsonResponse
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView
 from .models import Question, Quiz
-
-
-# Create your views here.
-# def quiz(request):
-#     return render(request, 'quiz.html')
+from django.urls import reverse_lazy
 
 class QuizTemplateView(TemplateView):
     template_name = 'quiz.html'
@@ -20,6 +16,7 @@ class QuizTemplateView(TemplateView):
 def QuizResult(request):
     # Get true answer from db
     results = request.GET
+
     questions = Question.objects.filter(question_text__in = list(results)[1:])
     dict_true_answer = {}
     for question in questions:
@@ -42,24 +39,12 @@ class QuizList(ListView):
     template_name = 'quiz_list.html'
     context_object_name = 'quizs'
 
-
-    def get_context_data(self, **kwargs):
-        print(self.request)
-        context = super().get_context_data(**kwargs)
-        context['quizs'] = context['quizs'].all()
-
-        search_input = self.request.GET.get('search-area') or ''
-        select_input = self.request.GET.get('select-categories') or ''
-        print(select_input)
-        if select_input:
-            context['quizs'] = context['quizs'].filter(category__startswith=select_input)
-
-        context['search_input'] = search_input
-        context['select_input'] = select_input
-
-        return context
-
 class QuizDetail(DetailView):
     model = Quiz
     template_name = 'quiz_detail.html'
     context_object_name = 'quiz'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['choice'] = ['A', 'B', 'C', 'D']
+        return context

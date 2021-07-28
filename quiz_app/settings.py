@@ -140,4 +140,9 @@ AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 TIME_ZONE = 'Asia/Ho_Chi_Minh'
+
+# Use for deploy
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+## Use for test local
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'

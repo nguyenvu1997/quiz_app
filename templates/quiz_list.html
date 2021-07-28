@@ -6,35 +6,96 @@ Quiz List
 
 {% block script %}
 <script>
-    function selectCategory() {
-        let selected = document.getElementById("select-categories")
-        console.log(selected.value)
+
+    function searchQuiz() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('seach_input');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("quizs");
+        li = ul.getElementsByTagName('li');
+
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
     }
+
+    function selectCategory() {
+        var select, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('select_input');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("quizs");
+        li = ul.getElementsByTagName('li');
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("span")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+
+    }
+
 </script>
 {% endblock script %}
+
+{% block css %}
+<style>
+    #quizs {
+        padding: 10px;
+        margin: 10px;
+        list-style: none;
+    }
+
+    #quizs li {
+        font-size: 20px;
+    }
+
+    #quizs li:hover {
+        font-size: 22px;
+    }
+
+    #quizs li a {
+        text-decoration: none;
+        color: black;
+    }
+
+    #quizs li a:hover {
+        color: blue;
+    }
+
+    #quizs .need_hide {
+        display: none;
+    }
+</style>
+{% endblock css %}
+
 
 {% block content %}
 <h2>This Is Quiz List</h2>
 
-<form method="GET" style="display: flex;">
 
-    <input type='text' name='search-area' placeholder="Search your task" value="{{search_input}}">
-    <button type="submit" class="btn btn-primary">
-        <i class="fas fa-search"></i>
-    </button>
+<input type='text' placeholder="Search quiz" id="seach_input" onkeyup="searchQuiz()" class="form-control">
 
-    <label for="select-categories">Choose a category:</label>
-    <select name="select-categories" id="select-categories" onchange="selectCategory()">
-        <option value="Math">Math</option>
-        <option value="Food">Food</option>
-    </select>
+<select class="form-select" id="select_input" onchange="selectCategory()">
+    <option value="">All</option>
+    <option value="Math">Math</option>
+    <option value="Food">Food</option>
+</select>
 
-</form>
 
-{% for quiz in quizs %}
-
-    <h2><a href="{% url 'quiz_detail' quiz.id %}"> {{quiz.title}}-{{quiz.category}}</a></h2>
-
-{% endfor %}
+<ul id="quizs">
+    {% for quiz in quizs %}
+    <li><a href="{% url 'quiz_detail' quiz.id %}"> {{quiz.title}}</a> <span class="need_hide"
+            id="category">{{quiz.category}}</span> </li>
+    {% endfor %}
+</ul>
 
 {% endblock content %}
