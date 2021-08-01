@@ -24,15 +24,26 @@ def QuizResult(request):
         a = (question.get_true_answer()[0])
         dict_true_answer[q] = str(a)
 
+    number_of_questions = 0
+    count = 0
+
     contents = []
     dict_answered = {}
     for result in list(results)[1:]:
+        number_of_questions+=1
         dict_answered['question'] = result
         dict_answered['answered'] = request.GET[result]
         dict_answered['true_answer'] = dict_true_answer[result]
+        if(request.GET[result] == dict_true_answer[result]):
+            count+=1
+
         contents.append(dict_answered.copy())
 
-    return render(request, 'quiz_result.html', {'contents' : contents})
+    score = f"{count}/{number_of_questions}"
+    
+    print(contents)
+
+    return render(request, 'quiz_result.html', {'contents' : contents, 'score':score})
 
 class QuizList(ListView):
     model = Quiz

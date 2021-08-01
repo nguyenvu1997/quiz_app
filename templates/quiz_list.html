@@ -79,16 +79,25 @@ Quiz List
 
 
 {% block content %}
-<h2>This Is Quiz List</h2>
 
-
-<input type='text' placeholder="Search quiz" id="seach_input" onkeyup="searchQuiz()" class="form-control">
-
-<select class="form-select" id="select_input" onchange="selectCategory()">
-    <option value="">All</option>
-    <option value="Math">Math</option>
-    <option value="Food">Food</option>
-</select>
+<div class="form-group">
+    <div class="row">
+        <div class="col-sm-12">
+            <input type='text' placeholder="Search quiz" id="seach_input" onkeyup="searchQuiz()" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <label for="select_input" class="col-sm-2 col-form-label">Select Category: </label>
+        <div class="col-sm-10">
+            <select class="form-select col-sm-10" id="select_input" onchange="selectCategory()">
+                <option value="">All</option>
+                <option value="Math">Math</option>
+                <option value="Food">Food</option>
+                <option value="Sports">Sports</option>
+            </select>
+        </div>
+    </div>
+</div>
 
 
 <ul id="quizs">

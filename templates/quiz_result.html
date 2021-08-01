@@ -4,18 +4,53 @@
     Quiz Result
 {% endblock title %}
 
+
+{% block css %}
+    <style>
+        #quiz_result{
+            padding: 10px;
+        }
+
+        #quiz_result p{
+            padding: 10px;
+            font-size: 18px;
+            padding-bottom: 0px !important;
+            margin-bottom: 10px !important;
+        }
+
+        #back-btn{
+            margin: 10px;
+        }
+        #result{
+            font-size: 35px;
+            font-weight: bold;
+        }
+    </style>
+{% endblock css %}
+
 {% block content %}
-    <h2>This Is Quiz Result</h2>
+    <div align='center'>
+        <p id='result'>Quiz Result</p>
+    </div>
     {% for content in contents %}
+        <div id='quiz_result'>
         {% if content.answered == content.true_answer %}
             <div class="border border-success rounded">
                 <p> Question : {{content.question}} | Your answer is : {{content.answered}} | True</p>
+            </div>
+        {% elif content.answered == "Not selected" %}
+            <div class="border border-danger rounded">
+                <p> Question : {{content.question}} | Not selected : True Answer Is : {{content.true_answer}}</p>
             </div>
         {% else %}
             <div class="border border-danger rounded">
                 <p> Question : {{content.question}} | Your answer is : {{content.answered}} | False : True Answer Is : {{content.true_answer}}</p>
             </div>
         {% endif %}
+        </div>
     {% endfor %}
-    <a class="btn btn-secondary" href="{% url 'quiz_list' %}">Back</a>
+
+    <h3>Result: {{score}}</h3>
+
+    <a class="btn btn-secondary" id="back-btn" href="{% url 'quiz_list' %}">Back</a>
 {% endblock content %}

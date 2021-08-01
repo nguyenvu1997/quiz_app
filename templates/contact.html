@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact {% endblock title %}
+
+{% block css %}
+<style>
+    input[type=text],
+    input[type=email],
+    textarea {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+    }
+
+    .heading_p {
+        text-align: center;
+        margin: 10px;
+    }
+
+    .heading_p p {
+        font-size: 34px;
+        font-weight: bold;
+        color: #00a19a;
+    }
+</style>
+{% endblock css %}
+
+{% block content %}
+<div class="contact">
+    <div class="heading_p">
+        <p>Contact Me</p>
+        {% if messages %}
+        <p class="text-success">{{messages}}</p>
+        {% endif %}
+    </div>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
 @media(max-width: 1000px){
     header #bar-icon {
         display: flex;
@@ -5,28 +7,25 @@
     header .need_hide{
         display: none;
     }
-
-    body {
-        background-color: teal;
-    }
 }
 
 * {
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
+    
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: teal;
 }
 
 header {
     display: flex;
     width: 100%;
-    background-color: black;
+    background-color: #00a19a;
 }
 
 .nav_box_web{
@@ -49,7 +48,7 @@ header {
 }
 
 .nav_box_web_list li a{
-    color: white;
+    color: #ebeded;
     text-decoration: none;
 }
 
@@ -64,7 +63,7 @@ header {
 }
 
 #bar-icon{
-    color: white;
+    color: #ebeded;
     display: none;
 }
 
@@ -82,7 +81,7 @@ header {
     left: 0;
     bottom: 0;
     width: 200px;
-    background-color: white;
+    background-color: #ebeded;
     font-size: 20px;
     list-style: none;
     padding: 0px;
@@ -94,7 +93,7 @@ header {
 }
 
 .nav_box_mobile_list a{
-    color: black;
+    color: #00a19a;
     text-decoration: none;
 }
 
@@ -103,11 +102,11 @@ header {
 }
 
 .nav_box_web_list .dropdown-menu{
-    background-color: black;
+    background-color: #00a19a;
 }
 
 .dropdown-menu .dropdown-item{
-    color: white;
+    color: #ebeded;
 }
 
 .nav_user .dropdown-menu{
@@ -115,15 +114,15 @@ header {
 }
 
 .dropdown-menu .dropdown-item{
-    color: white;
+    color: #ebeded;
 }
 
 .text-white{
-    color: white;
+    color: #ebeded;
 }
 
 .nav_box_mobile_list .dropdown-menu{
-    background-color: black;
+    background-color: #00a19a;
 }
 
 .container {
@@ -136,7 +135,7 @@ body .row {
 }
 
 .nav_user{
-    color: white;
+    color: #ebeded;
     padding: 15px;
     right: 0;
     margin-left: auto;
@@ -145,6 +144,6 @@ body .row {
 
 .nav_user a{
     text-decoration: none;
-    color: white;
+    color: #ebeded;
     padding: 10px;
 }

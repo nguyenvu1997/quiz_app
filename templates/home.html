@@ -1,7 +1,61 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %} Home Page {% endblock title %}
 
+{% block css %}
+<style>
+    .projects{
+        display: flex;
+        flex-wrap: wrap;
+        align-content: space-between;
+    }
+
+    .projects .img-project{
+        width: 350px;
+        height: 200px;
+        margin: 10px;
+        margin-top: 25px;
+    }
+
+    .container h5 {
+        font-size: 34px;
+        text-align: center;
+        margin: 10px;
+    }
+    .box_1 a{
+        text-decoration: none;
+        align-items: center;
+        font-weight: bold;
+        font-size: 25px;
+        color: black;
+    }
+    .box_1 h6{
+        text-align: center;
+    }
+</style>
+{% endblock css %}
+
 {% block content %}
-<h2>This is home page</h2>
+<h5>Projects</h5>
+<div class="projects">
+    
+    <div class="box_1">
+        <a href="{% url 'quiz_list' %}">
+            <img src="{% static 'img/quiz_app.png'%}" alt="" class="img-fluid img-thumbnail rounded img-project">
+        </a>
+        
+        <br>
+        <p align="center">
+            <a href="{% url 'quiz_list' %}">QUIZ APP</a>
+        </p>
+        
+        <h6>A QUIZ APP BUILT ON DJANGO</h6>
+        <!-- <a href="" class="btn btn-primary">View Project</a> -->
+    </div>
+
+</div>
+
+
 {% endblock content %}

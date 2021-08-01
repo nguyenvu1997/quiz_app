@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %} About Page {% endblock title %}
+
+{% block css %}
+<style>
+    .about #icon-download {
+        text-decoration: none;
+        padding: 3px;
+        border: black 1px solid;
+        border-radius: 30px;
+        width: 300px;
+        color: white;
+        background-color: blue;
+    }
+    .about #icon-github {
+        font-size: 22px;
+        color: black;
+    }
+
+    .about {
+        font-size: 22px;
+    }
+
+    .container h3 {
+        font-weight: bold;
+    }
+
+    .no_list_style {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .no_list_style li {
+        margin: 5px;
+    }
+</style>
+{% endblock css %}
+
+{% block content %}
+<h1>About Me.</h1>
+<div class="about">
+    <p><a href="https://github.com/nguyenvu1997/quiz_app" id="icon-github"><i class="fab fa-github"></i></a> Download my <a
+            href="{% url 'resume' %}" id="icon-download">resume <i class="fas fa-download"></i></a></p>
+    <p>I'm Nguyen Anh Vu, a 23 year old Vietnamese. I'm a creative guy who likes building websites. I like to solve problems, create web applications</p>
+    <p>I often solve prolems in leetcode, watch youtube, play computer games, read books and sleep in my freetime.</p>
+    <p>I wish to be a Fullstack Developer in the future</p>
+
+    <div class="main_skills">
+        <h3>Main Skills</h3>
+        <ul class="no_list_style">
+            <li>Frontend: HTML, CSS, Javascript</li>
+            <li>Backend: Django, Java</li>
+            <li>Database: MySQL, PostgreSQL</li>
+            <li>Process Data: Pandas, BeautifulSoup, Selenium, Matplotlib</li>
+        </ul>
+    </div>
+
+    <div class="tools_years">
+        <h3>Tools/Month</h3>
+        <ul class="no_list_style">
+            <li>Python/+11</li>
+            <li>Pandas/+8</li>
+            <li>Django/+3</li>
+        </ul>
+    </div>
+
+    <div class="experience">
+        <h3>Experience</h3>
+        <span>Data Analyst</span>
+        <p>8/2020 - 4-2021</p>
+    </div>
+
+    <div class="certificate">
+        <h3>Certificate</h3>
+        <p>TOEIC : 540</p>
+    </div>
+
+</div>
+
+{% endblock content %}
