@@ -17,7 +17,7 @@ def about(request):
 def resume_download(request):
     with open(os.path.join(settings.MEDIA_ROOT, 'resume.pdf'), 'rb') as fh:
         response = HttpResponse(fh.read(), content_type="application/pdf")
-        response['Content-Disposition'] = 'attachment; filename=resume.pdf'
+        response['Content-Disposition'] = 'attachment; filename=CV-NguyenAnhVu.pdf'
         return response
 
 def contact_view(request):
