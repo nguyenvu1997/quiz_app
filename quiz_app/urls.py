@@ -26,5 +26,6 @@ urlpatterns = [
     path('quiz/', include('quiz.urls')),
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
+    path('tasks/', include('task.urls')),
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

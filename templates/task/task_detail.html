@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %} {{task}} {% endblock title %}
+
+{% block css %}
+<style>
+
+    .task_detail div h6 {
+        font-size: 34px;
+        padding: 15px;
+        background-color: #00a19a;
+        font-weight: bold;
+        color: white;
+    }
+    .created_date{
+        float: right;
+    }
+
+    .back-btn{
+        margin-top: 45px;
+    }
+    
+</style>
+{% endblock css %}
+
+{% block content %}
+
+<div class="task_detail">
+    <div align='center'>
+        <h6>{{task.title}}</h6>
+    </div>
+    <p>Detail: {{task.description}}</p>
+
+
+
+    {% if task.complete %}
+        <p class="text-success">Completed</p>
+    {% else %}
+        <p class="text-warning">Incomplete</p>
+    {% endif %}
+
+    <div class="created_date">
+        <p>Created: {{task.created|date:'d-m-Y'}}</p>
+    </div>
+
+    <div class="back-btn">
+        <a href="{% url 'tasks' %}" class="btn btn-secondary">Back</a>
+    </div>
+    
+</div>
+
+
+{% endblock content %}

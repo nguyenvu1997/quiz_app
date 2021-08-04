@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %} About Page {% endblock title %}
+
+{% block script %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        form = document.querySelector("#create_form")
+        input = form.querySelector("input[type=checkbox]")
+        input.classList.add("form-check-input");
+        input.classList.add("check_complete-btn");
+    });
+</script>
+
+{% endblock script %}
+
+{% block css %}
+<style>
+    .task_create div {
+        background-color: #00a19a;
+    }
+
+    .task_create div h6 {
+        font-size: 34px;
+        padding: 15px;
+        background-color: #00a19a;
+        font-weight: bold;
+        color: white;
+    }
+
+    .task_create label {
+        font-size: 20px;
+    }
+
+    .task_create .submit-btn {
+        float: right;
+    }
+
+    .task_create form .check_complete-btn {
+        margin-top: 5px;
+        font-size: 20px;
+    }
+
+    input[type=text],
+    textarea {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+    }
+</style>
+{% endblock css %}
+
+{% block content %}
+
+<div class="task_create">
+    <div align='center'>
+        <h6>Create Task</h6>
+    </div>
+
+
+    <form method="post" id="create_form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <a href="{% url 'tasks' %}" class="btn btn-secondary">Back</a>
+        <div class="submit-btn">
+            <input type="submit" value="Save" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+{% endblock content %}

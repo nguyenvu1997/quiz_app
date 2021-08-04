@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %} To Do List {% endblock title %}
+
+{% block script %}
+<script>
+    function searchTask() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('search_task');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("tasks");
+        li = ul.getElementsByTagName('li');
+
+        for (i = 0; i < li.length; i++) {
+            span = li[i].getElementsByTagName("span")[0];
+            txtValue = span.textContent || span.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+</script>
+{% endblock script %}
+
+{% block css %}
+<style>
+    .task_list {
+        background-color: #00a19a;
+    }
+
+    .task_list div h6 {
+        font-size: 34px;
+        margin-top: 10px;
+        padding-top: 15px;
+        background-color: #00a19a;
+        font-weight: 1000;
+        color: white;
+    }
+
+    .task_list #search_task {
+        width: 70%;
+        margin: 15px 25px;
+    }
+
+    .task_list .search_add {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .search_add #addtask-btn {
+        padding: 5px;
+        font-size: 20px;
+        color: white;
+        margin-right: 10px;
+        margin-top: 15px;
+    }
+
+
+    .task_list ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        background-color: #00a19a;
+    }
+
+    .task_list ul li {
+        cursor: pointer;
+        position: relative;
+        padding: 12px 8px 12px 40px;
+        background: white;
+        font-size: 18px;
+        transition: 0.2s;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .task_list ul li:nth-child(odd) {
+        background: #f9f9f9;
+    }
+
+    .task_list ul li:hover {
+        background: #ddd;
+        ;
+    }
+    .task_list .completed_task {
+        text-decoration: line-through;
+    }
+
+
+    .task_list ul li a {
+        text-decoration: none;
+        float: right;
+        padding: 5px;
+    }
+
+    .delete-btn {
+        color: red;
+    }
+
+    .edit-btn {
+        color: #00a19a;
+    }
+</style>
+{% endblock css %}
+
+{% block content %}
+<div class="task_list">
+    <div align='center'>
+        <h6>My To Do List</h6>
+    </div>
+
+    <div class="search_add">
+        <input type="text" id="search_task" class="form-control" onkeyup="searchTask()" placeholder="Search task">
+        <a href="{% url 'task_create' %}" id='addtask-btn'><i class="fas fa-plus"></i></a>
+    </div>
+
+    <ul id='tasks'>
+        {% for task in tasks %}
+        {% if task.complete %}
+        <li class="completed_task"> <span class="text-success">{{task}}</span> <a href="{% url 'task_delete' task.pk %}"><i
+                    class="fas fa-eraser delete-btn"></i></a><a href="{% url 'task_edit' task.pk %}"><i
+                    class="fas fa-edit edit-btn"></i></a>
+            <a href="{% url 'task_detail' task.pk %}"><i class="fas fa-eye"></i></a>
+        </li>
+        {% else %}
+        <li> <span class="text-secondary">{{task}}</span> <a href="{% url 'task_delete' task.pk %}"><i
+                    class="fas fa-eraser delete-btn"></i></a><a href="{% url 'task_edit' task.pk %}"><i
+                    class="fas fa-edit edit-btn"></i></a>
+            <a href="{% url 'task_detail' task.pk %}"><i class="fas fa-eye"></i></a>
+        </li>
+        {% endif %}
+
+
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}
