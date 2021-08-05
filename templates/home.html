@@ -42,6 +42,19 @@
 <div class="projects">
     
     <div class="box_1">
+        <a href="{% url 'tasks' %}">
+            <img src="{% static 'img/todolist.png'%}" alt="" class="img-fluid img-thumbnail rounded img-project">
+        </a>
+        
+        <br>
+        <p align="center">
+            <a href="{% url 'tasks' %}">TO DO LIST</a>
+        </p>
+        
+        <h6>A QUIZ APP BUILT ON DJANGO</h6>
+    </div>
+    
+    <div class="box_1">
         <a href="{% url 'quiz_list' %}">
             <img src="{% static 'img/quiz_app.png'%}" alt="" class="img-fluid img-thumbnail rounded img-project">
         </a>
@@ -52,7 +65,6 @@
         </p>
         
         <h6>A QUIZ APP BUILT ON DJANGO</h6>
-        <!-- <a href="" class="btn btn-primary">View Project</a> -->
     </div>
 
 </div>

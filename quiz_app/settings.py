@@ -149,10 +149,10 @@ LOGOUT_REDIRECT_URL = 'home'
 TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 # Use for deploy
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Use for test local
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 
